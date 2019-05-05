@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LanguageContext from '../contexts/languageContext';
+import ColorContext from '../contexts/colorContext';
 
 // create contect object
 //define the contextType
@@ -8,13 +9,21 @@ import LanguageContext from '../contexts/languageContext';
 //used Consumer
 class Button extends Component {
 
-  render(){
+  renderButton(color) {
     return(
-      <button className="ui button primary">
+      <button className={`ui button ${color}`}>
         <LanguageContext.Consumer>
           {(value) => value === 'english' ? 'submit' : 'voorleggen'}
         </LanguageContext.Consumer>
       </button>
+    )
+  }
+
+  render(){
+    return(
+      <ColorContext.Consumer>
+      { (color) => this.renderButton(color) }
+      </ColorContext.Consumer>
     );
   }
 }
