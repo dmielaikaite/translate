@@ -5,14 +5,16 @@ import LanguageContext from '../contexts/languageContext';
 //define the contextType
 //use the context
 
+//used Consumer
 class Button extends Component {
-  static contextType = LanguageContext;
 
   render(){
-    const text = this.context === 'english' ? 'submit' : 'voorleggen'
-
     return(
-      <button className="ui button primary"> {text} </button>
+      <button className="ui button primary">
+        <LanguageContext.Consumer>
+          {(value) => value === 'english' ? 'submit' : 'voorleggen'}
+        </LanguageContext.Consumer>
+      </button>
     );
   }
 }
